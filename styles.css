@@ -1,0 +1,215 @@
+body {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a1f, #25252b);
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  transition: background 0.5s ease-in-out; /* เพิ่มการเปลี่ยนแปลงพื้นหลังให้สมูท */
+  overflow: hidden; /* ป้องกันการเลื่อนของหน้าเว็บ */
+}
+
+.container {
+  position: relative;
+  width: 700px;
+  height: 450px;
+  border: 2px solid #ff2770;
+  box-shadow: 0 0 25px #ff2770;
+  overflow: hidden;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0; /* ลบระยะห่างระหว่างฟอร์มและข้อมูล */
+  flex-direction: row; /* จัดเรียงฟอร์มและข้อมูลในแนวนอน */
+  position: relative;
+  overflow: hidden;
+  z-index: 1; /* เพิ่ม z-index เพื่อให้ container อยู่ด้านบน */
+}
+
+.form-box {
+  position: absolute; /* ใช้ absolute เพื่อให้สามารถเลื่อนฟอร์มได้ */
+  top: 0;
+  width: 87%; /* ขยายฟอร์มให้เต็มพื้นที่ */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 48px;
+  transition: transform 0.8s ease-in-out; /* ลดระยะเวลาและเพิ่มความสมูท */
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 2; /* เพิ่ม z-index เพื่อให้ form-box อยู่ด้านบน */
+}
+.form-box h2 {
+  font-size: 34px; /* ลดขนาดหัวข้อ */
+  margin: 0px 0px 0px 250px;
+  color: #ff2770;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.form-box.Login {
+  transform: translateX(0); /* ตำแหน่งเริ่มต้นของฟอร์ม Login */
+}
+
+.form-box.Register {
+  transform: translateX(100%); /* ซ่อนฟอร์ม Register ด้านขวา */
+}
+
+.container.active .form-box.Register {
+  transform: translateX(0); /* แสดงฟอร์ม Register */
+}
+
+.container.active .form-box.Login {
+  transform: translateX(-100%); /* เลื่อนฟอร์ม Login ออกไปด้านซ้าย */
+}
+
+.input-box {
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 15px; /* เพิ่มระยะห่างระหว่าง input */
+}
+
+.input-box input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  background: transparent;
+  color: #fff;
+  outline: none;
+  transition: border-bottom 0.4s ease-in-out, background 0.4s ease-in-out; /* เพิ่มความสมูท */
+  caret-color: #ff2770; /* เพิ่มสีของ caret ให้ตรงกับธีม */
+}
+
+.input-box input:focus,
+.input-box input:valid {
+  border-bottom: 2px solid #ff2770;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.input-box label {
+  position: absolute;
+  width: 50%;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+  transition: top 0.4s ease-in-out, font-size 0.4s ease-in-out, color 0.4s ease-in-out; /* เพิ่มความสมูท */
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+  top: 0;
+  font-size: 12px;
+  color: #ff2770;
+}
+
+.input-box i {
+  position: absolute;
+  top: 50%;
+  
+  right: 10px;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 18px;
+  overflow: hidden;
+}
+
+.btn {
+  margin: 0px 0px 0px 80px;
+  margin-top: 15px;
+  padding: 15px;
+  width: 70%;
+  background: #ff2770;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.4s ease-in-out, box-shadow 0.4s ease-in-out; /* เพิ่มความสมูท */
+  border-radius: 25px;
+  box-shadow: 0 4px 10px rgba(255, 39, 112, 0.5);
+ 
+}
+
+.btn:hover {
+  background: #e91e63;
+  box-shadow: 0 6px 15px rgba(233, 30, 99, 0.6);
+}
+
+.regi-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.regi-link a {
+  color: #ff2770;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.regi-link a:hover {
+  text-decoration: underline;
+  color: #e91e63;
+}
+
+.info-content {
+  position: absolute;
+  top: 0;
+  width: 100%; /* ขยายข้อมูลให้เต็มพื้นที่ */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 40px;
+  text-align: left;
+  transition: transform 0.8s ease-in-out, background 0.5s ease-in-out; /* เพิ่มความสมูท */
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 20px;
+  z-index: 1; /* ลด z-index เพื่อให้ info-content อยู่ด้านล่าง form-box */
+}
+
+.info-content.Login {
+  display: none;
+  transform: translateX(0); /* ตำแหน่งเริ่มต้นของข้อมูล Login */
+}
+
+.info-content.Register {
+  display: none;
+  transform: translateX(-100%); /* ซ่อนข้อมูล Register ด้านซ้าย */
+}
+
+.container.active .info-content.Register {
+  transform: translateX(0); /* แสดงข้อมูล Register */
+}
+
+.container.active .info-content.Login {
+  transform: translateX(100%); /* เลื่อนข้อมูล Login ออกไปด้านขวา */
+}
+
+.info-content h2 {
+  font-size: 28px; /* ลดขนาดหัวข้อ */
+  color: #ff2770;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  margin-bottom: 15px;
+}
+
+.info-content p {
+  font-size: 14px; /* ลดขนาดข้อความ */
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.container.active .form-box.Register,
+.container.active .form-box.Login {
+  overflow: hidden; /* ป้องกันการแสดงผลเกินขอบ */
+}
